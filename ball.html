@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>动态小球</title>
+	<style type="text/css">
+		body{
+			background-color:#E91E63;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas class="balls">您的浏览器不支持canvas，请升级你的浏览器</canvas>
+	<script type="text/javascript">
+		<!-- 代码以现代模式工作 -->
+		"use strict"
+	 
+		// <!-- 通过找画布 -->
+		var ball=document.getElementsByClassName('balls')[0];
+		// nbubble[];
+		// 设置画布长宽与浏览器一致
+		let h,w;
+		h = window.innerHeight;
+		w = window.innerWidth;
+		ball.width = w;
+		ball.height = h;
+
+		var nBubble=[]
+
+		// 创建context对象
+		var cxt=ball.getContext('2d');
+		// 创建颜色列表
+		var colors=["#F5F5F5","#FFA726","#4CAF50","#4DB6AC","#9575CD"];
+		
+		Bubble.prototype={
+			// 初始化
+			init:function(){
+				this.x=Math.floor(Math.random()*1500+1)
+				this.y=Math.floor(Math.random()*800+1)
+				this.r=Math.random()*5+3;
+				this.color=colors[Math.floor(Math.random()*5)]
+				this.draw()
+				console.log("初始x值"+this.x)
+			},
+			// 画
+			draw:function(){
+				cxt.fillStyle=this.color;
+				cxt.beginPath();
+				cxt.arc(this.x,this.y,this.r,0,Math.PI*4,true);
+				cxt.closePath();
+				cxt.fill();
+			},
+			//移动
+			move:function(){
+				this.x+=this.vx;
+				this.y+=this.vy;
+				console.log("x移动距离："+this.x)
+			},
+			conllisionDect : function () {
+				if(this.x - this.r < 0 || this.x + this.r > w){
+					this.vx = -this.vx;
+				};
+				if(this.y - this.r < 0 || this.y + this.r > h){
+					this.vy = -this.vy;
+				}
+			},
+
+
+		}
+		// 球形对象
+		function Bubble(){
+			this.init();
+			this.vx=Math.random()*2-1;
+			this.vy=Math.random()*2-1;
+		}
+		// 设置小球数量
+		function create(num){
+			for (var i = 0; i <num; i++) {
+					nBubble[i] = new Bubble();
+			}
+		}
+		create(200)
+
+		window.setInterval(function (){
+			cxt.clearRect(0,0,w,h);
+			// for...of:一般循环数组使用，循环的是value；for...in：一般循环对象使用，循环的是key
+			for (var key of nBubble) {
+				key.move();
+				key.draw();
+				key.conllisionDect();
+			}
+		},1000/60)
+
+	
+
+		
+	</script>
+</body>
+</html>
