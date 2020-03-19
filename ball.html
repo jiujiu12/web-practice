@@ -15,7 +15,7 @@
 		<!-- 代码以现代模式工作 -->
 		"use strict"
 	 
-		// <!-- 通过找画布 -->
+		// <!-- 通过class找画布 -->
 		var ball=document.getElementsByClassName('balls')[0];
 		// nbubble[];
 		// 设置画布长宽与浏览器一致
@@ -35,12 +35,12 @@
 		Bubble.prototype={
 			// 初始化
 			init:function(){
-				this.x=Math.floor(Math.random()*1500+1)
-				this.y=Math.floor(Math.random()*800+1)
+				this.x=Math.floor(Math.random()*w+1)
+				this.y=Math.floor(Math.random()*h+1)
 				this.r=Math.random()*5+3;
 				this.color=colors[Math.floor(Math.random()*5)]
 				this.draw()
-				console.log("初始x值"+this.x)
+				console.log(this.x)
 			},
 			// 画
 			draw:function(){
@@ -54,8 +54,8 @@
 			move:function(){
 				this.x+=this.vx;
 				this.y+=this.vy;
-				console.log("x移动距离："+this.x)
 			},
+			// 小球遇到边界反弹回来
 			conllisionDect : function () {
 				if(this.x - this.r < 0 || this.x + this.r > w){
 					this.vx = -this.vx;
@@ -73,12 +73,13 @@
 			this.vx=Math.random()*2-1;
 			this.vy=Math.random()*2-1;
 		}
-		// 设置小球数量
+		// 设置创建小球数量
 		function create(num){
 			for (var i = 0; i <num; i++) {
-					nBubble[i] = new Bubble();
+				nBubble[i] = new Bubble();
 			}
 		}
+		// 创建200个小球
 		create(200)
 
 		window.setInterval(function (){
