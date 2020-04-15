@@ -1,39 +1,36 @@
 //自调用，防止出现各个js文件命名冲突的情况
 (function(){
+	let map=document.getElementById('container');
+	var position='absolute';
 // 创建蛇对象的构造函数
-function Snake(){
-	let snakeColors=['blue','blue','red'];
-	this.div={0:'',1:'',2:''};
-	let parent=document.getElementById('container');
-	this.box=document.createElement('div');
-	parent.append(this.box);
-	for(let i=0;i<3;i++){
-		this.div[i]=document.createElement('div');
-		this.box.append(this.div[i]);
-		this.div[i].bgColor=snakeColors[i];
-		this.div[i].width=20;
-		this.div[i].height=20;
-	}	
-	this.box.x=0;
-	this.box.y=0;
-	this.init();
+function Snake(parent){
+	//定义每一节蛇的大小
+	this.width=20;
+	this.height=20;
+	//蛇移动的方向
+	this.direction='right';
+//	定义蛇属性
+	this.body=[
+		{x:3,y:2,color:'red'},
+		{x:2,y:2,color:'blue'},
+		{x:1,y:2,color:'blue'}
+	]
+	this.init(parent);
 }
 
 //初始化蛇对象
-Snake.prototype.init=function(){
-	for(let i=0;i<3;i++){
-		this.div[i].style.backgroundColor=this.div[i].bgColor;
-		this.div[i].style.width=20+'px';
-		this.div[i].style.height=20+'px';
-		/*this.div[i].style.position='absolute';
-		this.div[i].style.left=this.div[i].x+'px';
-		this.div[i].style.top=this.div[i].y+'px';*/
+Snake.prototype.init=function(map){
+	for(let i in this.body){
+		var obj=this.body[i];
+		var div=document.createElement('div');
+		map.appendChild(div);
+		div.style.position=position;
+		div.style.width=this.width+'px';
+		div.style.height=this.height+'px';
+		div.style.left=obj.x*this.width+'px';
+		div.style.top=obj.y*this.height+'px';
+		div.style.backgroundColor=obj.color;
 	}	
-	this.box.style.width=60+'px';
-	this.box.style.height=20+'px';
-	this.box.style.display='flex';
-	this.box.style.marginLeft=this.box.x+'px';
-	this.box.style.marginTop=this.box.y+'px';
 	
 }
 //蛇移动事件
