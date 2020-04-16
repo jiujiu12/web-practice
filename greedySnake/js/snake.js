@@ -67,8 +67,7 @@ Foots.prototype.init=function(){
 	style.height=this.height+'px';
 	style.backgroundColor=this.bgColor;
 	style.position="absolute";
-	style.left=this.x;
-	style.top=this.y;
+	this.getRandomP();
 }
 //随机生成食物位置
 Foots.prototype.getRandomP=function(){

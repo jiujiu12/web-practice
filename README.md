@@ -11,3 +11,7 @@
   box.js--设置方块属性
   tools.js--设置随机数工具
   main.js--执行函数等主要操作
+## 贪吃蛇
+   tools.js--设置随机数工具
+   snake.js--设置蛇对象
+   game.js--设置游戏对象

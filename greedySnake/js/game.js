@@ -1,7 +1,7 @@
 // 自调用函数
 (function(){
 	function Game(map){
-		this.food=new Foods(map);
+		this.food=new Foots(map);
 		this.snake=new Snake(map);
 		this.map=map;
 	}
