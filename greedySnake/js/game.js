@@ -10,10 +10,6 @@
 		//1.把蛇和食物对象渲染至地图上
 		this.food.init(this.map);
 		this.snake.init(this.map);
-		this.snake.move(this.map);
-		this.snake.init(this.map);
-		this.snake.move(this.map);
-		this.snake.init(this.map);
 		//2.开始游戏的逻辑
 	}
 	

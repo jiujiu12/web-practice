@@ -20,10 +20,11 @@ function Snake(parent){
 
 //初始化蛇对象
 Snake.prototype.init=function(map){
+	this.removeSnake();
 	for(let i in this.body){
 		var obj=this.body[i];
-		elements[i]=document.createElement('div');
-		var div=elements[i];
+		var div=document.createElement('div');
+		elements.push(div);
 		map.appendChild(div);
 		div.style.position=position;
 		div.style.width=this.width+'px';
@@ -35,14 +36,6 @@ Snake.prototype.init=function(map){
 }
 //蛇移动事件
 Snake.prototype.move=function(map){
-if(elements.length!=0){
-	//将
-	let i=3;
-	while(i>1){
-		map.removeChild(map.childNodes[i+1]);
-//		elements.pop();	
-		i--;
-	}
 		//控制蛇身体的移动
 	for(let i=1;i<(this.body.length);i++){
 		this.body[i].x=this.body[i-1].x;
@@ -64,7 +57,17 @@ if(elements.length!=0){
 			head.y+=1;
 			break;
 	}
-	console.log(elements.length)
+}
+//删除蛇事件
+Snake.prototype.removeSnake=function(){
+	if(elements.length!=0){
+	//将
+	let i=3;
+	while(i>1){
+		map.removeChild(map.childNodes[i+1]);
+//		elements.pop();	
+		i--;
+	}
 	}
 }
 //蛇吃食物事件
