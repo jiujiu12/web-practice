@@ -2,6 +2,7 @@
 (function(){
 	let map=document.getElementById('container');
 	var position='absolute';
+	var elements=[];
 // 创建蛇对象的构造函数
 function Snake(parent){
 	//定义每一节蛇的大小
@@ -14,15 +15,15 @@ function Snake(parent){
 		{x:3,y:2,color:'red'},
 		{x:2,y:2,color:'blue'},
 		{x:1,y:2,color:'blue'}
-	]
-	this.init(parent);
+	];
 }
 
 //初始化蛇对象
 Snake.prototype.init=function(map){
 	for(let i in this.body){
 		var obj=this.body[i];
-		var div=document.createElement('div');
+		elements[i]=document.createElement('div');
+		var div=elements[i];
 		map.appendChild(div);
 		div.style.position=position;
 		div.style.width=this.width+'px';
@@ -31,14 +32,39 @@ Snake.prototype.init=function(map){
 		div.style.top=obj.y*this.height+'px';
 		div.style.backgroundColor=obj.color;
 	}	
-	
 }
 //蛇移动事件
-Snake.prototype.move=function(event){
-	var event=event||window.event;
-	switch(event.keyCode){
-		case 37:
-			
+Snake.prototype.move=function(map){
+if(elements.length!=0){
+	//将
+	let i=3;
+	while(i>1){
+		map.removeChild(map.childNodes[i+1]);
+//		elements.pop();	
+		i--;
+	}
+		//控制蛇身体的移动
+	for(let i=1;i<(this.body.length);i++){
+		this.body[i].x=this.body[i-1].x;
+		this.body[i].y=this.body[i-1].y;
+	}
+	//控制蛇头移动
+	var head=this.body[0];
+	switch(this.direction){
+		case 'right':
+			head.x+=1;
+			break;
+		case 'left':
+			head.x-=1;
+			break;
+		case 'top':
+			head.y-=1;
+			break;
+		case 'bottom':
+			head.y+=1;
+			break;
+	}
+	console.log(elements.length)
 	}
 }
 //蛇吃食物事件
@@ -57,8 +83,7 @@ function Foots(parent){
 	this.y=0;
 	this.div=document.createElement('div');
 	this.parent=parent;
-	this.parent.append(this.div)
-	this.init();
+	this.parent.append(this.div);
 }
 //初始化食物对象
 Foots.prototype.init=function(){
