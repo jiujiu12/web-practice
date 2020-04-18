@@ -11,6 +11,15 @@
 		this.food.init(this.map);
 		this.snake.init(this.map);
 		//2.开始游戏的逻辑
+		//蛇移动
+		//键盘控制蛇移动
+		//遇到边界游戏结束
+		//遇到食物，吃掉并变长
+	}
+	function runSnake(){
+		window.setInterval(function(){
+			
+		},150);
 	}
 	
 	//给外部暴露函数

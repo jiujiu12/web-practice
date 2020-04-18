@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>关于setInterval函数的作用域问题</title>
+</head>
+
+<body>
+	
+	
+	<script>
+	function win(){
+		var i=0;
+		var t={
+  			a:function(){
+				//相当于直接将b这个函数作为参数调用，每30毫秒调用这个函数，此时b函数失去了t这个作用域，相当于直接在全局调用。
+    			this.timer=setInterval(this.b,30);
+  			},
+  			b:function(){
+    			if(i++<1){
+      				console.log(this);
+    			}
+  			} 
+		};
+		//打印一个window对象
+		t.a();
+	}
+	//1. 设置变量将原函数的this存储起来，新建一个函数，在函数中调用that.b
+	function change1(){
+		var i=0;
+		var t={
+  		a:function(){
+    		var that=this;
+    		this.timer=setInterval(function(){
+      		that.b();
+			},30);
+  		},
+  		b:function(){
+			if(i++<1){
+				console.log("修改1："+this);
+    		}
+  		}
+	};
+		//打印的是t对象
+		t.a();
+	}
+	// 2.bind
+	function scopedInterval1(func, delay, context) {
+		return window.setInterval(func.bind(context), delay);
+	}
+	function change2(){
+		var i=0;
+		var t={
+			a:function(){
+				this.timer= scopedInterval1(this.b,30,this);
+			},
+			b:function(){
+				if(i++<1){
+					console.log("修改2："+this);
+    			}
+  			}
+		}
+		t.a();
+	}
+	// 3.or call
+	function scopedInterval2(func, delay, context) {
+    	return window.setInterval(function () {func.call(context);}, delay);
+	}
+	function change3(){
+		var i=0;
+		var t={
+			a:function(){
+				var that=this;
+				this.timer=scopedInterval2(that.b,30,that);
+			},
+			b:function(){
+				if(i++<1){
+					console.log("修改3："+this);
+    			}
+  			}
+		}
+		t.a();
+	}
+		win();
+		change1();
+		change2();
+		change3();
+	</script>
+</body>
+</html>
