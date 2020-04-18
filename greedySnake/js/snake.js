@@ -12,9 +12,9 @@ function Snake(parent){
 	this.direction='right';
 //	定义蛇属性
 	this.body=[
-		{x:3,y:2,color:'red'},
-		{x:2,y:2,color:'blue'},
-		{x:1,y:2,color:'blue'}
+		{x:3,y:2,color:'rgb(67, 120, 77)'},
+		{x:2,y:2,color:'rgb(31, 188, 135)'},
+		{x:1,y:2,color:'rgb(31, 188, 135)'}
 	];
 }
 
@@ -35,9 +35,9 @@ Snake.prototype.init=function(map){
 	}	
 }
 //蛇移动事件
-Snake.prototype.move=function(){
+Snake.prototype.move=function(food){
 		//控制蛇身体的移动
-	for(let i=1;i<(this.body.length);i++){
+	for(let i=this.body.length-1;i>0;i--){
 		this.body[i].x=this.body[i-1].x;
 		this.body[i].y=this.body[i-1].y;
 	}
@@ -57,22 +57,23 @@ Snake.prototype.move=function(){
 			head.y+=1;
 			break;
 	}
+	
+	var headX=head.x*this.width;
+	var headY=head.y*this.height;
+	
+	if(headX===food.x && headY==food.y){
+		var last=this.body[this.body.length-1];
+		this.body.push({x:last.x,y:last.y,color:last.color});
+		food.init();
+	}
 }
 //删除蛇事件
 Snake.prototype.removeSnake=function(map){
-	if(elements.length!=0){
-	//将
-	let i=3;
-	while(i>1){
-		map.removeChild(map.childNodes[i+1]);
-		elements.pop();	
-		i--;
+	for(let i=elements.length-1;i>=0;i--){
+		//删除div和数组中的元素
+		elements[i].parentNode.removeChild(elements[i]);
+		elements.splice(i,1);
 	}
-	}
-}
-//蛇吃食物事件
-Snake.prototype.eat=function(){
-	
 }
 //创建食物对象的构造函数
 function Foots(parent){
@@ -99,11 +100,11 @@ Foots.prototype.init=function(){
 }
 //随机生成食物位置
 Foots.prototype.getRandomP=function(){
-	var x=Tools.getRandom(0,this.parent.offsetWidth/this.width-1)*this.width;
-	var y=Tools.getRandom(0,this.parent.offsetHeight/this.height-1)*this.height;
+	this.x=Tools.getRandom(0,this.parent.offsetWidth/this.width-1)*this.width;
+	this.y=Tools.getRandom(0,this.parent.offsetHeight/this.height-1)*this.height;
 	
-	this.div.style.left=x+'px';
-	this.div.style.top=y+'px';
+	this.div.style.left=this.x+'px';
+	this.div.style.top=this.y+'px';
 }
 //将foots和snake设为window对象属性即可在外部文件调用
 window.Foots=Foots;
