@@ -12,10 +12,10 @@
   tools.js--设置随机数工具
   main.js--执行函数等主要操作
 ## 贪吃蛇 greedySnake
-  tools.js--设置随机数工具
-  snake.js--设置蛇对象
-  game.js--设置游戏对象
+  用js对象实现的贪吃蛇案例
 ## test文件夹中为在练习过程中遇到的各种问题
   scope--作用域相关问题
   	setIntervalScope.html--定时器作用域问题
+  function--函数相关问题
+  selfInvoking.html--自调用函数问题
    	

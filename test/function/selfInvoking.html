@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自调用函数问题</title>
+</head>
+
+<body>
+	总结：自调用函数最好在其前加上分号，否则会和其上操作混为一体，易出错
+	<script>
+	//报错，自调用函数返回undefined值与下一个自调用函数构成一个类似调用函数的形式，报错。
+		
+	/*(function(){
+		console.log(1);
+	})()
+	(function(){
+		console.log(2);
+	})()*/
+	
+	//打印3，并报错：fun函数与(function(){console.log(4);})构成自调用函数。
+		
+	/*var fun=function(){
+		console.log(3);
+	}
+	(function(){
+		console.log(4);
+	})()*/
+	
+	//改正：
+	;(function(){
+		console.log(1);
+	})()
+	;(function(){
+		console.log(2);
+	})()
+		
+	var fun=function(){
+		console.log(3);
+	}
+	;(function(){
+		console.log(4);
+	})()
+		
+	
+	</script>
+</body>
+</html>

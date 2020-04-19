@@ -46,6 +46,7 @@
 	}
 	// 2.bind
 	function scopedInterval1(func, delay, context) {
+		//改变函数指向this
 		return window.setInterval(func.bind(context), delay);
 	}
 	function change2(){
