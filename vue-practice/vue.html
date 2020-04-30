@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue01</title>
+    <script src="js/vue-2.4.0.js" ></script>
+</head>
+<body>
+<!--V层-->
+<div id="app">
+<!--    {{msg}}闪烁-->
+    <p>{{msg}}</p>
+    <p v-cloak>{{msg}}</p>
+    <p v-text="msg" id="run" ></p>
+    <p v-html="hhh"></p>
+    <input value="冲鸭~" v-bind:title="mytitle+'123'" @click="running"/>
+    <input value="等等我" v-bind:title="mytitle+'123'" @click="stop"/>
+</div>
+<script>
+//       VM层
+    var vm=new Vue({
+        el:'#app',
+        //M层
+        data:{
+            msg:'欢迎学习Vue',
+            mytitle:'我的按钮',
+            mytime:null,
+            hhh:'<h1>Hello</h1>'
+        },
+        methods:{
+             running(){
+                 if (this.myTime==null) {
+                     this.myTime =
+                         setInterval(() => {
+                             var start = this.msg.substring(0, 1);
+                             var end = this.msg.substring(1);
+                             this.msg = end + start;
+                         }, 400);
+                 }
+            },
+            stop(){
+                clearInterval(this.myTime);
+                console.log(this.myTime);
+                this.myTime=null;
+            }
+        }
+    })
+setInterval(1000);
+</script>
+</body>
+</html>

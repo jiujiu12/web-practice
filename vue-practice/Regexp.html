@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap-3.3.7.css" rel="stylesheet">
+    <!--    <link href="css/animate.css" rel="stylesheet">-->
+    <script src="js/vue-2.4.0.js"></script>
+    <!--    <script src="js/vue-resource-1.3.4.js"></script>-->
+</head>
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">表单验证：</div>
+    <div class="panel-body">
+        <form class="" id="search">
+            <div class="form-group">
+                <label for="InputName">用户名:</label>
+                <input type="text" class="form-control" id="InputName" onblur="checkName()">
+                <span id="nameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="InputPassword">密码:</label>
+                <input type="password" class="form-control" id="InputPassword" onblur="checkPassword()">
+                <span id="passwordError"></span>
+            </div>
+            <div class="form-group">
+                <label for="InputConfirm">确认密码:</label>
+                <input type="password" class="form-control" id="InputConfirm" onblur="confirm()">
+                <span id="confirmError"></span>
+            </div>
+            <div class="form-group">
+                <label for="InputSex">性别:</label>
+                <input type="text" class="form-control" id="InputSex" onblur="checkSex()">
+                <span id="sexError"></span>
+            </div>
+            <div class="form-group">
+                <label for="InputAge">年龄:</label>
+                <input type="text" class="form-control" id="InputAge" onblur="checkAge()">
+                <span id="ageError"></span>
+            </div>
+            <div class="form-group">
+                <label for="InputPhone">手机号:</label>
+                <input type="text" class="form-control" id="InputPhone" onblur="checkPhone()">
+                <span id="phoneError"></span>
+            </div>
+            <div class="form-group">
+                <label for="InputBlod">血型:</label>
+                <input type="text" class="form-control" id="InputBlod" onblur="checkBlod()">
+                <span id="blodError"></span>
+            </div>
+            <div class="form-group">
+                <label for="InputAddr">地址:</label>
+                <input type="text" class="form-control" id="InputAddr" onblur="checkAddr()">
+                <span id="addrError"></span>
+            </div>
+            <div class="form-group">
+                <label for="InputMail">邮箱:</label>
+                <input type="text" class="form-control" id="InputMail" onblur="checkEmail()">
+                <span id="mailError"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    /*用户名：2-6个汉字*/
+    var cname = /^[\u4e00-\u9fa5]{2,6}$/;
+    //密码：8-16个字母或英文
+    var cpassword=new RegExp(/^[0-9a-zA-Z]{8,16}$/);
+    //检验性别
+    var csex=new RegExp(/^[男女]{1}$/);
+    //邮箱：              A-z包括所有大小写字母，^在【】中表示非，\w表示0-9A-z_,\W为^w
+    var cmail=new RegExp(/^\w+@(\w|\d){2,3}[.](com|cn|com.cn)$/);
+    //年龄检验
+    var cage=new RegExp(/^([12]{1}[0-9]{1}[0-9]{1}|[1-9]?[0-9])$/);
+    //血型检验
+    var cblod=new RegExp(/^([ABOPD]|RH|AB|MNSSU)$/);
+    //手机号检验
+    var cphone=new RegExp(/^[\d]{11}$/);
+    //校验通过
+    function checkRight(border,error){
+        error.innerHTML="";
+        border.style.border="green solid 1px";
+    }
+    // 校验失败
+    function checkWrong(border,error,str){
+        error.innerHTML=("请输入"+str).fontcolor("red");
+        border.style.border="red solid 1px";
+    }
+    //校验用户名
+    function checkName() {
+        var border=document.getElementById("InputName");
+        var name=document.getElementById("InputName").value;
+        var nameError=document.getElementById("nameError");
+        var nameFormat="2-6位汉字！";
+        if (cname.test(name)){
+            checkRight(border,nameError)
+        }else{
+           checkWrong(border,nameError,nameFormat)
+        }
+    }
+    //校验密码
+    function checkPassword() {
+        var border=document.getElementById("InputPassword");
+        var password=document.getElementById("InputPassword").value;
+        var passwordError=document.getElementById("passwordError");
+        var passwordFormat="8-16个字母或英文！";
+        if (cpassword.test(password)){
+            checkRight(border,passwordError)
+        }else{
+            checkWrong(border,passwordError,passwordFormat)
+        }
+    }
+    // 确认密码
+    function confirm() {
+        var pass=document.getElementById("InputPassword");
+        var confirm=document.getElementById("InputConfirm");
+        var confirmError=document.getElementById("confirmError");
+        var confirmValue=confirm.value;
+        var confirmFormat="与密码框一致的密码！";
+        if (pass.value==confirmValue){
+            checkRight(confirm,confirmError);
+        }else{
+            checkWrong(confirm,confirmError,confirmFormat);
+        }
+    }
+    //检验性别
+    function checkSex() {
+        var border=document.getElementById("InputSex");
+        var sexError=document.getElementById("sexError");
+        var sex=border.value;
+        var sexFormat="正确的性别！";
+        if (csex.test(sex)){
+            checkRight(border,sexError);
+        }else{
+            checkWrong(border,sexError,sexFormat);
+        }
+    }
+    // 检验邮箱
+    function checkEmail() {
+        var border=document.getElementById("InputMail");
+        var mailError=document.getElementById("mailError");
+        var email=border.value;
+        var mailFormat="正确的邮箱格式！";
+        if (cmail.test(email)){
+            checkRight(border,mailError);
+        }else{
+            checkWrong(border,mailError,mailFormat);
+        }
+    }
+//    年龄检验
+    function checkAge() {
+        var border=document.getElementById("InputAge");
+        var ageError=document.getElementById("ageError");
+        var age=border.value;
+        var ageFormat="正确的年龄！";
+        if (cage.test(age)){
+            checkRight(border,ageError);
+        }else{
+            checkWrong(border,ageError,ageFormat);
+        }
+    }
+//    血型检验
+    function checkBlod(){
+        var border=document.getElementById("InputBlod");
+        var blodError=document.getElementById("blodError");
+        var blod=border.value;
+        var blodFormat="正确的血型！";
+        if (cblod.test(blod)){
+            checkRight(border,blodError);
+        }else{
+            checkWrong(border,blodError,blodFormat);
+        }
+    }
+    // 手机号检验
+    function checkPhone() {
+        var border=document.getElementById("InputPhone");
+        var phoneError=document.getElementById("phoneError");
+        var phone=border.value;
+        var phoneFormat="正确的手机号！";
+        if (cphone.test(phone)){
+            checkRight(border,phoneError);
+        }else{
+            checkWrong(border,phoneError,phoneFormat);
+        }
+    }
+</script>
+</body>
+</html>

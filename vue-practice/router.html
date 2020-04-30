@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Router传参</title>
+    <link href="css/bootstrap-3.3.7.css" rel="stylesheet">
+    <script src="js/vue-2.4.0.js"></script>
+    <script src="js/vue-router-3.0.1.js" ></script>
+
+</head>
+<body>
+<div id="app">
+<!-- 1.query传参   使用查询字符串，可以不修改路由规则的path路径-->
+    <router-link to="/login?id=10">登录</router-link>
+<!--2.params  -->
+    <router-link to="/register">注册</router-link>
+<router-view></router-view>
+</div>
+
+<script>
+    var login={
+        template:'<h1>登录--{{$route.query.id}}</h1>',
+        created:function(){
+            alert(this.$route.query.id);
+        }
+    }
+    var register={
+        template:'<h1>注册--{{$route.params.id}}--{{$route.params.name}}</h1>',
+        //生命周期函数不要用箭头函数--不能对this进行频繁操作
+        created(){
+            alert(this.$route.params.id);
+        }
+    }
+    var router=new VueRouter({
+        routes:[
+            //1.path可以不改动
+            {path:'/login',component:login},
+            //2.占位符  解析
+            {path:'/register/:id/:name',component:register}
+            ]
+    });
+    new Vue({
+        el:'#app',
+        data:'',
+        methods:'',
+        // router:router,
+        router,
+    })
+</script>
+</body>
+</html>

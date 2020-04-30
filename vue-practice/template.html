@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template</title>
+    <link href="css/bootstrap-3.3.7.css" rel="stylesheet">
+    <script src="js/vue-2.4.0.js"></script>
+    <script src="js/vue-router-3.0.1.js" ></script>
+    <style>
+        .myActive{
+            color: red;
+            background-color: #5bc0de;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<!--    <login></login>-->
+    <router-link to="/"></router-link>
+    <router-link to="/login">登录</router-link>
+    <router-link to="/register">注册</router-link>
+    <router-view></router-view>
+</div>
+
+<script>
+    var login={
+        template:'<h1>登录</h1>'
+    }
+    var register={
+        template:'<h1>注册</h1>'
+    }
+    var routerObj=new VueRouter({
+        routes:[
+            //每个路由匹配规则 对象,必须属性：1.path 监听哪个路由链接地址
+            //2.component 匹配某个path，展示对应组件
+            //默认展示
+            {path:'/',redirect:'/login'},
+            {path:'/login',component:login},
+            {path:'/register',component:register }
+        ],
+        //设置高亮
+        linkActiveClass:'myActive'
+    })
+
+   /* var login=Vue.component('login',{
+        template:'<div>登录</div>'
+    })*/
+    new Vue({
+        el:'#app',
+        data:'',
+        methods:'',
+        router:routerObj,//将路由规则对象注册到vm实例中，监听url地址变化，展示对应组件
+    })
+</script>
+</body>
+</html>
