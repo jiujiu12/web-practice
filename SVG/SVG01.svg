@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+<!-- Emoji -->
+<!-- Unsure Face -->
+<!-- 滤镜定义在<defs></defs>标签内-->
+    <defs>
+    <!--   设置emoji的渐变色 -->
+        <linearGradient id="f1" gradientUnits="userSpaceOnUse" x1="50" y1="20" x2="50" y2="77">
+            <stop offset="0" stop-color="#f4e6c8"/>
+            <stop offset="1" stop-color="#f5e169"/>
+        </linearGradient>
+    </defs>
+
+    <circle cx='50' cy='50' r='40' stroke-width='3'  fill="url(#f1)"  />
+    <circle cx='33.5' cy='38.409' r='7.5' fill='#4a3826'/>
+    <circle cx='66.5' cy='38.409' r='7.5' fill='#4a3826'/>
+    <path d='M33 65.091h34' stroke='#4a3826' stroke-width='5'></path>
+<!-- / Unsure Face -->
+
+<!-- 
+    阴影滤镜
+    <des>
+        <filter id="f1" x="0" y="0" width="200%" height="200%">
+            <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+            <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
+         </filter>
+    </defs>
+    <rect width="90" height="90" stroke="green" stroke-width="3"
+    fill="yellow" filter="url(#f1)" />
+-->
+
+  <!--画圆
+       <circle cx="150" cy="150" r="80" 
+  stroke-width="1" fill="rgb(244,227,142)" />
+   -->
+
+
+</svg>

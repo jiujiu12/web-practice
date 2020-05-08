@@ -12,7 +12,7 @@ var server=http.createServer(function(request,response){
     // 获得HTTP请求的method和url:
     console.log("请求方法："+request.method+","+"请求路径："+request.url)
     // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
-    response.writeHead(200,{"Content-Type: text/html;charset='utf-8'"});
+    response.writeHead(200,{"Content-Type": "text/html;"});
     response.write("<head> <meta charset='UTF-8'> </head>");
     // 将HTTP响应的HTML内容写入response:
     response.end("你好");
