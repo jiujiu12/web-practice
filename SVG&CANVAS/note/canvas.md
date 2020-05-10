@@ -1,3 +1,5 @@
+[TOC]
+
 # canvas
 
 1. 必须指定宽高，确定可绘图区域的大小
@@ -49,21 +51,40 @@ var context=drawing.getContext('2d');
 
 ### 变换
 
-重新定位原点
+1. 重新定位原点
 
 ```javascript
 context.translate(200,200);//将（200，200）设置为坐标原点
 ```
 
-旋转元素
+2. 旋转元素
 
 ```javascript
 context.rotate(1);
 ```
 
-跟踪上下文状态变化
+3. 跟踪上下文状态变化
 
-调用`save()`方法将所有设置保存入栈，然后对上下文进行其他修改，需要之前保存的状态时，调用`restore()`方法，将保存的栈结构位置向前返回一级，回复之前的状态。
+   调用`save()`方法将所有设置保存入栈，然后对上下文进行其他修改，需要之前保存的状态时，调用`restore()`方法，将保存的栈结构位置向前返回一级，回复之前的状态。
+
+   这里save的是调用该方法前的状态，调用一次restore时，回到的便是最后一次用save保存的状态。
 
 ### 绘制图像
+
+​	**遇到问题：**找到图片img元素后，将参数传给`context.drawImage(image,10,10)`后图片并没有在画布上展示。
+
+​	**解决方案**：图像需调用onload事件，包裹住绘制图像方法。
+
+​	代码如下：
+
+```javascript
+ document.images[0].onload=function(){
+                var context=drawing.getContext('2d');
+                // 获取img元素
+                var image=document.images[0];
+                context.drawImage(image,0,10,50,50,0,100,40,60);
+           }
+```
+
+
 

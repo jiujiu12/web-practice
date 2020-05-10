@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas绘制图像</title>
+</head>
+<body>
+    <img src="./../image/02.jpg"/>
+    <!-- 放置画布 -->
+    <canvas id="drawing" width="1200" height="1200">Your browser does not support canvas attribute.</canvas>
+    <script>
+        var drawing=document.getElementById('drawing');
+        // 确定浏览器支持canvas元素
+        if (drawing.getContext) {
+           document.images[0].onload=function(){
+                var context=drawing.getContext('2d');
+                // 获取img元素
+                var image=document.images[0];
+                context.drawImage(image,0,10,50,50,0,100,40,60);
+           }
+        }   
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>canvas</title>
+    <title>canvas 绘制时钟</title>
 </head>
 <body>
     <!-- 1.必须指定宽高，确定可绘图区域的大小 -->
@@ -12,26 +12,9 @@
 
     <script>
         var drawing=document.getElementById('drawing');
-        console.log(drawing.getContext);
         // 确定浏览器支持canvas元素
         if(drawing.getContext){
             var context=drawing.getContext('2d');
-            // 2d操作：1.填充，对应属性：fillStyle 2.描边，对应属性：strokeStyle
-
-            // 1> 绘制矩形
-            // 与矩形相关的操作有：fillRect，strokeRect，clearRect。三个方法参数：4个。x，y，矩形宽度，矩形高度
-            // 绘制两个矩形部分叠加，通过上面的蓝色矩形可以看到下面的红色矩形
-            context.fillStyle='#ff0000';
-            context.fillRect(10,10,50,50);
-            context.fillStyle='rgba(0,0,255,0.5)';
-            context.fillRect(30,30,50,50);
-            // 绘制两个框线叠加的矩形
-            context.strokeStyle='#ff0000';
-            context.strokeRect(10,10,50,50);
-            context.strokeStyle='rgba(0,0,255,0.5)';
-            context.strokeRect(30,30,50,50);
-            // 在两个矩形重合的地方挖出一个小矩形
-            context.clearRect(40,40,10,10);
 
             // 2> 画布上绘制路径，必须先用beginPath()
             context.beginPath();
@@ -49,12 +32,12 @@
             // context.moveTo(200,200);
             // context.lineTo(200,115);
 
-            // 2. 重新定位原点
-            context.translate(200,200);
             // save保存到栈结构内 ?! 有问题
             context.save();
+            // 2. 重新定位原点
+            context.translate(200,200);
             // 旋转表针
-            context.rotate(1);
+            // context.rotate(1);   
             context.moveTo(0,0);
             context.lineTo(0,-85);
             
@@ -69,7 +52,6 @@
             context.lineTo(-65,0);
             // 描边路径
             context.stroke();
-
             // 3> 绘制文本。主要有两个方法：fillText(),strokeText()。
             //    有4个参数：要绘制的文本参数；x坐标；y坐标；最大像素宽度（可选）
             // 3个属性：
@@ -101,6 +83,7 @@
             context.fillText('3',88,0);
             context.fillText('6',0,85);
 
+            // context.restore();
             context.fillText('1',40,-70);
             context.fillText('2',73,-40);
             context.fillText('4',69,38);

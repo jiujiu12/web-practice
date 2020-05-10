@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas渐变</title>
+</head>
+<body>
+     <!-- 放置画布 -->
+     <canvas id="drawing" width="1200" height="1200">Your browser does not support canvas attribute.</canvas>
+     <script>
+         var drawing=document.getElementById('drawing');
+         // 确定浏览器支持canvas元素
+         if (drawing.getContext) {
+            //  获取2d上下文对象
+            var context=drawing.getContext('2d');
+            // 指定渐变区域大小
+
+            // 1.
+            // var gradient=context.createLinearGradient(30,30,70,70);
+
+            // 2.
+            // 创建放射性渐变。参数：前三个--开始⚪的原心x，y和半径；后三个--最后⚪的原心x，y和半径
+            var gradient=context.createRadialGradient(55,55,10,55,55,30);
+
+            // 创建开始（0），结束（1）的颜色
+            gradient.addColorStop(0,'white');
+            gradient.addColorStop(1,'black');
+
+            // 绘制渐变矩形
+            context.fillStyle=gradient;
+            context.fillRect(30,30,50,50);
+
+         }
+    </script>
+
+</body>
+</html>

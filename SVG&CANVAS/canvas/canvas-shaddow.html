@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas绘制阴影</title>
+</head>
+<body>
+     <!-- 放置画布 -->
+     <canvas id="drawing" width="1200" height="1200">Your browser does not support canvas attribute.</canvas>
+     <script>
+         var drawing=document.getElementById('drawing');
+         // 确定浏览器支持canvas元素
+         if (drawing.getContext) {
+            //  获取2d上下文对象
+            var context=drawing.getContext('2d');
+
+
+            // 设置阴影
+
+            // 形状或路径x轴偏移量，默认为0
+            context.shadowOffsetX=5;
+            // 形状或路径y轴偏移量，默认为0
+            context.shadowOffsetY=5;
+            // 模糊的像素数，默认为0（不模糊）
+            context.shadowBlur=4;
+            // 阴影颜色，默认黑色
+            context.shadowColor='black';
+
+
+            // 绘制红色矩形
+            context.fillStyle='#ff0000';
+            context.fillRect(10,10,50,50);
+
+            // 绘制蓝色矩形
+            context.fillStyle='rgba(0,0,255,0.5)';
+            context.fillRect(30,30,50,50);
+
+         }   
+     </script>
+</body>
+</html>
