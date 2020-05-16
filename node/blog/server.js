@@ -2,7 +2,7 @@
 var http=require('http');
 var fs=require('fs');
 var path=require('path');
-var mime=require('mime');
+var mime=require('./node_modules/_mime@1.2.11@mime');
 var url=require('url');
 
 
@@ -36,18 +36,14 @@ http.createServer((req,res)=>{
     // res.writeHead(200,{'Content-Type':'text/plain'});
     // res.write("Hello!\n");
     // res.end('Bye')
-    // var filePath;
-    // if (req.url=="/") {
-    //     filePath='index.html';
-    // }else{
-    //     filePath='public'+req.url;
-    // }
-    // let absPath='./'+filePath;
-    // serverWorking(res,absPath);
-    var pathname = url.parse(req.url).pathname;
-    console.log("Request for " + pathname + " received.");
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.write("Hello World");
-    res.end();
+    var filePath;
+    if (req.url=="/") {
+        filePath='index.html';
+    }else{
+        filePath='public'+req.url;
+    }
+    let absPath='./'+filePath;
+    serverWorking(res,absPath);
+    
 }).listen(8888);
 
