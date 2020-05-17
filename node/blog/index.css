@@ -1,3 +1,14 @@
-.title{
+#header{
+    background-image: url(img/1.jpg);
+}
+#blog-description{
+    color: red;
+}
+#blog-description::before{
+    content: '';
+    width: 30px;
+    background-color: white;
+    display: inline-block;
+    vertical-align:middle;
 
 }
