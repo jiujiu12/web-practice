@@ -5,10 +5,10 @@ var path=require('path');
 var mime=require('./node_modules/_mime@1.2.11@mime');
 var url=require('url');
 
-
+// 返回404页面
 function send404(response) {
-    response.writeHead(404, {"Content-type" : "text/plain"});
-    response.write("Error 404: resource not found");
+    response.writeHead(404, {"Content-type" : "text/html"});
+    response.write("<center><h1>Error 404: resource not found</h1></center>");
     response.end();
   }
 
@@ -35,9 +35,6 @@ function send404(response) {
   }
   // 创建server
 http.createServer((req,res)=>{
-    // res.writeHead(200,{'Content-Type':'text/plain'});
-    // res.write("Hello!\n");
-    // res.end('Bye')
     var filePath;
     if (req.url=="/") {
         filePath='index.html';

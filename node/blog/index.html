@@ -4,21 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css"  type="text/css"/>
-    <title>BLOG</title>
+    <title>Fur's Blog</title>
 </head>
 <body>
     <main id="container" role="main">
+        <!-- 博客头部 -->
         <header id="header">
             <h1 id="title">Fur's Blog</h1>
             <div id="blog-description">A BLOG</div>
         </header>
-        <div class="content">
-            <h2>NodeJs for beginners.Building your own web server.</h2>
-            <p>You are free to create your own CSS file if you don't like our design.
-                What we are interested in for now is how our server handles the 404 error. 
-                That's why we created two "Read more" links. The first one is connected with the actual HTML file within the public folder. 
-                The second one is broken. Let's test how it works.<a>Read more...</a></p>
-        </div>
+        <!-- 菜单导航栏 -->
+        <nav class="menu">
+            <a href="/">HOME</a>
+        </nav>
+        <!-- 正文 -->
+        <section>
+            <article role="article">
+                <header class="article-header">
+                    <h2 class="article-title">
+                        <a href="#">BUB冒泡排序算法</a>
+                    </h2>
+                </header>
+                <section class="description">
+                    <p>原理：从第一个数开始，设其下标i=0，和后一个位置数相比较，若左侧值>右侧值，两数交换位置，i下标右移...</p>
+                </section>
+            </article>
+        </section>
     </main>
 </body>
 </html>

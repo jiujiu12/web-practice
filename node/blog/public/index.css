@@ -1,3 +1,8 @@
+/* 引入字体 */
+@font-face{
+    font-family: "Arvo";
+    src: url("./font/Arvo-Regular.ttf");
+}
 body{
     background-color: rgb(219, 187, 216);
 }
@@ -50,4 +55,22 @@ body{
     background-color: white;
     display: inline-block;
     vertical-align:middle;
+}
+.menu{
+    background-color: whitesmoke;
+    text-align: center;
+    font-family: Arvo;
+    font-size: 14px;
+    height: 30px;
+    padding: 16px 0 14px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.article-title{
+    text-align: center;
+}
+.description{
+    color: gray;
 }
