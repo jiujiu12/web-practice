@@ -23,10 +23,12 @@ function send404(response) {
           if (err) {
             send404(response)
           } else {
+            console.log(absPath);
             sendPage(response, absPath, data);
           }
         });
       } else {
+        console.log(absPath);
         send404(response);
       }
     });
