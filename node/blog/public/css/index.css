@@ -1,7 +1,7 @@
 /* 引入字体 */
 @font-face{
     font-family: "Arvo";
-    src: url("./font/Arvo-Regular.ttf");
+    src: url("./../font/Arvo-Regular.ttf");
 }
 body{
     background-color: rgb(219, 187, 216);
@@ -15,7 +15,7 @@ body{
 }
 
 #header{
-    background-image: url(img/1.jpg);
+    background-image: url(../img/1.jpg);
     padding: 45px 0 40px;
     background-position: center center;
     background-size: cover;
@@ -27,6 +27,7 @@ body{
     display: inline-block;
     margin: 0 0 15px;
     border: white solid 4px;
+    color: white !important;
     text-transform:uppercase;
     letter-spacing: 10px;
     font-weight: normal;

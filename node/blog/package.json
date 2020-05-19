@@ -1,8 +1,9 @@
 {
-    "name" : "blog",
-    "version" : "0.0.1",
-    "description" : "My minimalistic blog",
-    "dependencies" : {
-      "mime" : "~1.2.7"
-    }
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "My minimalistic blog",
+  "dependencies": {
+    "fonts.css": "^2.0.0",
+    "mime": "~1.2.7"
   }
+}
