@@ -10,13 +10,16 @@ function login(){
     }
     sleep(10000);
 }
-function user(){
-    console.log('你好，');
-    return '你好，';
+function user(name){
+    console.log('你好，'+name);
+    return `你好，${name}`;
 }
 
+function callback(name) {
+    user(name);
+};
 handle['/']=login;
 handle['/login']=login;
-handle['/user']=user;
+handle[`/user?name=${name}`]=callback;
 
 exports.handle=handle;

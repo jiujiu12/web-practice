@@ -1,9 +1,21 @@
 {
   "name": "blog",
-  "version": "0.0.1",
-  "description": "My minimalistic blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "dependencies": {
-    "fonts.css": "^2.0.0",
-    "mime": "~1.2.7"
-  }
+    "_loadash@1.0.0@loadash": "^1.0.0",
+    "_fonts.css@2.0.0@fonts.css": "^2.0.0",
+    "_mime@1.2.11@mime": "^1.2.11",
+    "loadash": "^1.0.0",
+    "fonts.css": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
