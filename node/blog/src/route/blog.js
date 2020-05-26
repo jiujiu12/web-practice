@@ -1,6 +1,3 @@
-const { getList }=require('../controller/blog');
-const user = require('../models/user');
-
 // blog操作 路由
 const blogHandle=(req,res)=>{
     // 请求路径
@@ -11,10 +8,9 @@ const blogHandle=(req,res)=>{
     if (method==='GET') {
         // 展示/查询博客列表
         if(relPath==='/blog'||relPath==='/'){
-            const author = req.query.author || '';
-            const keyword = req.query.keyword || '';
-            const listData = getList(author,keyword);
-            return new user(listData);
+            return{
+                msg:'查询成功'
+            };
         }
         // 查看详情
         if (relPath==='/blog/detail') {
