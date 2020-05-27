@@ -1,5 +1,9 @@
-const { getList }=require('../controller/blog');
-const user = require('../models/user');
+const { 
+    getList,
+    getDetailList,
+    newBlog
+    } = require('../controller/blog');
+const {Success,Erro} = require('../models/userModel');
 
 // blog操作 路由
 const blogHandle=(req,res)=>{
@@ -7,6 +11,7 @@ const blogHandle=(req,res)=>{
     let relPath=req.url.split('?')[0];
     // 请求方式
     let method=req.method;
+
     // get查询
     if (method==='GET') {
         // 展示/查询博客列表
@@ -14,27 +19,33 @@ const blogHandle=(req,res)=>{
             const author = req.query.author || '';
             const keyword = req.query.keyword || '';
             const listData = getList(author,keyword);
-            return new user(listData);
+            return new Success(listData);
         }
         // 查看详情
         if (relPath==='/blog/detail') {
-            return{
-                msg:'详情'
-            };
+            const id = req.url.split('?')[1];
+            const detailList=getDetailList(id);
+            return new Success(detailList);
+        
         }
     }
+
+     // post添加
+     if (method==='POST'&&relPath==='/blog/add') {
+
+        newBlog(req.body);
+        console.log("blogHandle:"+JSON.stringify(req.body));
+            
+        return JSON.stringify(req.body);
+    } 
+
     // put修改
     else if (method==='PUT'&&relPath==='/blog/update') {
         return{
             msg:'修改成功'
         };
     }
-    // post添加
-    else if (method==='POST'&&relPath==='/blog/add') {
-        return{
-            msg:'添加成功'
-        };
-    }
+   
     // delete 删除
     else if(method==='DELETE'&&relPath==='/blog/del'){
         return{
