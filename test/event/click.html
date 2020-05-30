@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标单击与双击事件</title>
+</head>
+<body>
+    <button id="btn">点我！</button>
+    <p>防止出现双击后仍执行单击事件的情况</p>
+    <script>
+        var btn = document.getElementById('btn');
+        var time;
+        btn.addEventListener("click",()=>{
+            clearTimeout(time);
+            time=setTimeout(function () {
+                console.log("单击事件");
+            },300)
+        })
+
+        btn.addEventListener("dblclick",()=>{
+            clearTimeout(time);
+            console.log("双击事件");
+        })
+    </script>
+    
+</body>
+</html>
